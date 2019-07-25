@@ -1,4 +1,10 @@
-import React from "react";
+/*
+So far we have only used the "render" component
+
+We can change these to "stateless component functions"
+
+If your component only has render and proptypes, it can be converted to a stateless functional component in pure JS, like this:
+
 
 const Header = (props) => (
     <header className="top">
@@ -16,4 +22,6 @@ const Header = (props) => (
 );
 
 
-export default Header;
+
+
+*/

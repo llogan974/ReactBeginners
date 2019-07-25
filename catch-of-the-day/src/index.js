@@ -6,8 +6,7 @@ import React from 'react';
 import { render } from 'react-dom';
 
 // Import each component
-import StorePicker from './components/storepicker';
-import App from './components/App';
+import Router from "./components/Router";
 
 
 // When css is updated, it will update the page live
@@ -17,4 +16,4 @@ import "./css/style.css";
 
 // render takes two things: HTMK and dom elements:
 // The HTML elements can be written as self closing
-render(<App />, document.querySelector('#main'));
+render(<Router />, document.querySelector('#main'));
