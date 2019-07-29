@@ -2,10 +2,12 @@
 Props
 
 Concepts: Prop and State
-Props are like HTML attributes.
+Props are like HTML attributes, the tag needs to know those attributes to know how it renders on the page.
+
 Like Img, that needs the src and "alt" attributes
 
-Components call them "props" not attributes, and they are HOW WE GET DATA INTO A COMPONENT
+Components call them "props" not attributes, and they are HOW WE GET DATA INTO A COMPONENT.
+so, react components get the data into the app.
 
 Data lives in the app, and we must get it into our header component.
 
