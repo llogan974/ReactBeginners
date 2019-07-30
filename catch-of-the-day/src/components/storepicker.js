@@ -16,20 +16,15 @@ class StorePicker extends React.Component {
     goToStore = (event) => {
     // prevent page reloading
         event.preventDefault();
-        console.log(this);
 
+        // Get text input
+        const storeName = this.myInput.current.value;
+
+        // Change url to /store/textinput.
+        // Since storeinput is a child of the router, we can access it
+        this.props.history.push(`/store/${storeName}`);
     };
-    // When submitting the store button
 
-
-    //  Get text input
-    /*
-    There are 2 ways to get the input from the form:
-    first is refs: it is touching the dom.
-    second: sync text with State
-    Refs allow us to reference a dom node.
-    */
-    // Change the store to what they entered.
 
     //Every class in react needs at least one method called "render" to tell what goes on the page
     render() {
