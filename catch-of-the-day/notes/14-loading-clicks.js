@@ -1,0 +1,6 @@
+/*
+Any  custom function that updates state needs to live in the same component the state is in.
+
+
+
+*/

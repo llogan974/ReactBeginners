@@ -11,6 +11,7 @@ class Inventory extends React.Component {
                 {/* This component calls the function "addFish" in app.js. this.props.addFish is being called on the addFishForm */}
                 {/* AddFishForm is a component */}
                 <AddFishForm addFish={this.props.addFish}/>
+                <button onClick={this.props.loadSampleFishes}>Load Sample Fishes</button>
 
             </div>
         )
