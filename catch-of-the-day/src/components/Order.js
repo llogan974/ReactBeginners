@@ -14,7 +14,11 @@ class Order extends React.Component {
         const count = this.props.order[key];
 
         // Check to see if the fish is available
-        const isAvailable = fish.status === 'available';
+        const isAvailable = fish && fish.status === 'available';
+
+        // If there is no fish (this is for checking local storage if a user has an order)
+        if(!fish) return null;
+
         if(!isAvailable){
 
             // Add a key to loop over objects

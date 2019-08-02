@@ -5,6 +5,7 @@ import Inventory from './Inventory.js';
 import sampleFishes from '../sample-fishes';
 // Pull in sample data
 import Fish from './Fish';
+import base from "../base";
 
 
 class App extends React.Component {
@@ -19,6 +20,35 @@ class App extends React.Component {
 
     };
 
+    // Hook into the app when it mounts
+    componentDidMount(){
+        console.log("MOUNTED!");
+        // Get data from just our store from the url via props router > storeID
+        const {params} = this.props.match;
+
+        // reinstate our local storage if the user has a previous order.
+        const localStorageRef = localStorage.getItem(params.storeId);
+
+        // Check if it is a new store; if so, there will be no order in localstorage
+        if(localStorageRef){
+            this.setState({ order: JSON.parse(localStorageRef) })
+        }
+
+        // syncState takes two args
+        this.ref = base.syncState(`${params.storeId}/fishes`, {context: this,
+        state: "fishes"});
+    }
+
+    // check if order changed to update local storage
+    componentDidUpdate(){
+        console.log(this.state.order);
+        localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order));
+    }
+
+    componentWillUnmount(){
+        // remove references to the old store when using back button in browser to go to a new store
+        base.removeBinding(this.ref);
+    }
     // This component data is created two levels down in addFishForm and is received via inventory
     /* This is being created here,  */
     addFish = fish => {
