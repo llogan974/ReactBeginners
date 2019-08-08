@@ -1,0 +1,10 @@
+/*
+
+CRUD
+
+CREATE
+READ
+UPDATE
+DELETE
+How to delete from inventory and the order
+*/

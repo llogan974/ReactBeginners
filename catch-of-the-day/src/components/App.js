@@ -41,7 +41,6 @@ class App extends React.Component {
 
     // check if order changed to update local storage
     componentDidUpdate(){
-        console.log(this.state.order);
         localStorage.setItem(this.props.match.params.storeId, JSON.stringify(this.state.order));
     }
 
@@ -63,6 +62,28 @@ class App extends React.Component {
         this.setState({fishes});
         // refresh the form.
     };
+
+    // Function for when fish are updated in the inventory form
+    updateFish = (key, updatedFish) =>  {
+        // Take a copy of the current state
+        const fishes = {...this.state.fishes};
+
+        // update that state
+        fishes[key] = updatedFish;
+
+        // Set that to state
+        this.setState({fishes});
+    }
+
+    deleteFish = (key) => {
+        // Take a copy of the fish state (it is an object)
+        const fishes = {...this.state.fishes};
+
+        // delete the state
+        fishes[key] = null;
+        // update state
+        this.setState({fishes});
+    }
     loadSampleFishes = () => {
 
         // This function takes in the items from sample-fishes.js
@@ -77,6 +98,14 @@ class App extends React.Component {
         order[key] = order[key] + 1 || 1;
         // call setState to update our state obkject
         this.setState({order});
+    }
+    removeFromOrder = (key) => {
+                // take a copy of state
+                const order = {...this.state.order};
+                // add to the order or update number in the order
+                delete order[key];
+                // call setState to update our state obkject
+                this.setState({order});
     }
     render() {
         return (
@@ -98,9 +127,21 @@ class App extends React.Component {
                 </div>
                 {/* Whatever is in here is what it is "reacting" to. Meaning this will include the data we are feeding it */}
 
-                <Order fishes={this.state.fishes} order={this.state.order}/>
+                <Order fishes={this.state.fishes} order={this.state.order} removeFromOrder={this.removeFromOrder}/>
                 {/* This calls the ADDFISH from above */}
-                <Inventory addFish= {this.addFish} loadSampleFishes={this.loadSampleFishes}/>
+                <Inventory
+                     addFish= {this.addFish}
+
+                    //  Call the const created above, when a fish is updated in the FishForm
+                     updateFish= {this.updateFish}
+
+                    //  From the Edit Fish Form Button to delete fish
+                    deleteFish={this.deleteFish}
+
+                    loadSampleFishes={this.loadSampleFishes}
+                    // Put all the fish in the inventory to loop over them in EditFishForm
+                    fishes={this.state.fishes}
+                />
             </div>
         )
     }
